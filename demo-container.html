@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>jQuery Image Resize Plugin Demo</title>
+  
+  <style>
+	html{
+		height: 100%;
+  	}
+	body{
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	
+	#imgWrapper{
+		position: relative;
+		width: 500px;
+		height: 300px;
+		margin: auto;
+		overflow:hidden;
+		background: #eee;
+	}
+	
+	.resizeme{
+		display: none;
+	}
+	
+  </style>
+</head>  
+<body>  
+	<!-- Stock images from Unsplash.com -->
+     <!-- Portrait example
+	 <img alt="Image Example" class="resizeme" src="img/paris.jpg">
+	 -->
+	<div id="imgWrapper">
+		<img alt="Image Example" class="resizeme" src="img/mountain.jpg">
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="js/jquery.fitToWindow.js"></script>
+	<script>
+		function revealImage(){
+			$(".resizeme").css({"display": "block"});
+		}
+	
+		$(function() {
+			//default has the image centered horizontally and vertically
+			$(".resizeme").fitToWindow({container:"#imgWrapper", scaleType:"proportional", callback: revealImage});			
+		});
+	</script>
+</body>
+</html>  

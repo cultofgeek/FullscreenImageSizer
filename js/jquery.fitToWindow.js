@@ -14,6 +14,7 @@
 		 scaleType : "crop", //options - fill, proportional, crop
 		 bindResize : true, //should we always resize the image with the window
 		 centerImage: true,
+		 container: window,
 		 callback: function(){}
 	};
 
@@ -27,8 +28,6 @@
 	
 	ImageSizer.prototype = {
 	
-		sw : $(window).width(),
-		sh : $(window).height(),
 		_ratio: 1,
 		
 		_init: function () {
@@ -38,12 +37,15 @@
 			this._origWidth = this.el.width,
 			this._origHeight = this.el.height;
 			
+			this.sw = $(this.settings.container).width();
+			this.sh = $(this.settings.container).height();
+			
 			this._scaleImage();
 			
 			if (this.settings.bindResize){
 				$( window ).resize(function() {
-					self.sw = $(window).width();
-					self.sh = $(window).height();
+					self.sw = $(this.settings.container).width();
+					self.sh = $(this.settings.container).height();
 					self._scaleImage();
 				});
 			}
@@ -96,7 +98,7 @@
 					}
 				}
 				else if (this.settings.scaleType == "crop"){
-					//is the aspect ratio of the image greater than the browser?
+					//Is the aspect ratio of the image greater than the browser?
 					if (this._origWidth / this._origHeight > this.sw / this.sh) {
 						var scale = this.sh / this._origHeight;
 						goalWidth = this._origWidth * scale;
