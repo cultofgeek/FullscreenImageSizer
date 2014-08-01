@@ -13,8 +13,8 @@
 	var defaults = {
 		 scaleType : "crop", //options - fill, proportional, crop
 		 bindResize : true, //should we always resize the image with the window
-		 centerImage: true,
-		 container: window,
+		 centerImage: true, // should we center the image against the container
+		 container: window, // the element to resize the image against
 		 callback: function(){}
 	};
 
@@ -44,8 +44,8 @@
 			
 			if (this.settings.bindResize){
 				$( window ).resize(function() {
-					self.sw = $(this.settings.container).width();
-					self.sh = $(this.settings.container).height();
+					self.sw = $(self.settings.container).width();
+					self.sh = $(self.settings.container).height();
 					self._scaleImage();
 				});
 			}
